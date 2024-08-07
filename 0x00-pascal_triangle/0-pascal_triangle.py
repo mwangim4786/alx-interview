@@ -4,8 +4,10 @@ Creates a function def pascal_triangle(n) that returns a list of lists of intege
 """
 
 def pascal_triangle(n):
-    triangle = [[1]]
+    if n <= 0:
+        return []
 
+    triangle = [[1]]
     for i in range(n - 1):
         temp = [0] + triangle[-1] + [0]
         new_row = []
@@ -13,10 +15,3 @@ def pascal_triangle(n):
             new_row.append(temp[j] + temp[j + 1])
         triangle.append(new_row)
     return triangle
-
-
-
-
-
-    # return [[1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]]
-
