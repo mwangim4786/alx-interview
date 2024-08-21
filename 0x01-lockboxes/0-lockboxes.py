@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """method to determine if all the boxes can be opened"""
 
-def canUnlockAll(boxes):
 
+def canUnlockAll(boxes):
+    """method to determine if all the boxes can be opened"""
     if (type(boxes) is not list):
         return False
 
@@ -18,4 +19,3 @@ def canUnlockAll(boxes):
         return True
     else:
         return False
-

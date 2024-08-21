@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Function for pascals triangle"""
 
+
 def pascal_triangle(n):
     """
     Creates a function def pascal_triangle(n) that returns a list
