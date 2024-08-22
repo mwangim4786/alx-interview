@@ -3,28 +3,33 @@
 Minimum Operations
 """
 
-import math
-
-
-def factors(n):
-    """factors of n number"""
-    mylist = []
-    while n % 2 == 0:
-        mylist.append(2)
-        n = n / 2
-    for i in range(3, int(math.sqrt(n)) + 1, 2):
-        while n % i == 0:
-            mylist.append(i)
-            n = n / i
-    if n > 2:
-        mylist.append(n)
-    return mylist
-
-
 def minOperations(n):
-    """calculate the minimum operations"""
-    if type(n) != int or n < 2:
+    '''Computes the fewest number of operations needed to result
+    in exactly n H characters.
+    '''
+    if not isinstance(n, int):
         return 0
-    else:
-        numOperations = sum(factors(n))
-        return int(numOperations)
+    ops_count = 0
+    clipboard = 0
+    done = 1
+    # print('H', end='')
+    while done < n:
+        if clipboard == 0:
+            # init (the first copy all and paste)
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif n - done > 0 and (n - done) % done == 0:
+            # copy all and paste
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif clipboard > 0:
+            # paste
+            done += clipboard
+            ops_count += 1
+            # print('-(01)->{}'.format('H' * done), end='')
+    # print('')
+    return ops_count
