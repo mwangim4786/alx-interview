@@ -28,6 +28,6 @@ def minOperations(n):
     if type(n) != int or n < 2:
         return 0
     else:
-        num_of_operations = sum(factors(n))
+        num_of_operations = sum(factors_of(n))
         return int(num_of_operations)
 
