@@ -1,35 +1,35 @@
-#!/usr/bin/env python3
-""" 
-Minimum Operations
-"""
-
-from typing import List
-
-def factors_of(n: int) -> List[int]:
-    """ factors of a number n """
-    factorsList: List[int] = []
-
-    div: int = 2
-    operations: int = 0
-
-    while n > 1:
-        if n % div == 0:
-            n = n / div
-
-            factorsList.append(div)
-
-            operations = operations + div
-        else:
-            div +=1
-
-    return factorsList
+#!/usr/bin/python3
+'''The minimum operations coding challenge.
+'''
 
 
-
-def minOperations(n: int) -> int:
-    """ calculate the minimum operations """
-    if type(n) != int or n < 2:
+def minOperations(n):
+    '''Computes the fewest number of operations needed to result
+    in exactly n H characters.
+    '''
+    if not isinstance(n, int):
         return 0
-    else:
-        num_of_operations: int = sum(factors_of(n))
-        return num_of_operations
+    ops_count = 0
+    clipboard = 0
+    done = 1
+    # print('H', end='')
+    while done < n:
+        if clipboard == 0:
+            # init (the first copy all and paste)
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif n - done > 0 and (n - done) % done == 0:
+            # copy all and paste
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif clipboard > 0:
+            # paste
+            done += clipboard
+            ops_count += 1
+            # print('-(01)->{}'.format('H' * done), end='')
+    # print('')
+    return ops_count
