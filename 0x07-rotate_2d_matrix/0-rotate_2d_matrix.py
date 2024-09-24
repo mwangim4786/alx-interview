@@ -3,12 +3,16 @@
 """
 def rotate_2d_matrix(matrix):
     """ Rotates an n by n 2D matrix in place. """
-    R, C = len(matrix), len(matrix[0])
-    newArr = [[None] * R for x in range(C)]
-    for c in range(C):
-        for r in range(R):
-            newArr[r][c] = matrix[r][c]
-    for c in range(C):
-        for r in range(R):
-            matrix[r][c] = newArr[C-1-c][r]
-    return matrix
+    rows = len(matrix)
+    cols = len(matrix[0])
+    c, r = 0, rows - 1
+    for i in range(cols * rows):
+        if i % rows == 0:
+            matrix.append([])
+        if r == -1:
+            r = rows - 1
+            c += 1
+        matrix[-1].append(matrix[r][c])
+        if c == cols - 1 and r >= -1:
+            matrix.pop(r)
+        r -= 1
