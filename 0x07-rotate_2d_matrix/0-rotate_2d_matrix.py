@@ -2,7 +2,7 @@
 """ Rotate 2D Matrix
 """
 def rotate_2d_matrix(matrix):
-
+    """ Rotates an n by n 2D matrix in place. """
     R, C = len(matrix), len(matrix[0])
     newArr = [[None] * R for x in range(C)]
     for c in range(C):
